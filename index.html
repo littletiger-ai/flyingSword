@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flying Sword Game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000; /* Black background */
+            overflow: hidden; /* Prevent scrollbars */
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #gameCanvas {
+            display: block;
+        }
+        #ui-layer {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            pointer-events: none; /* Let clicks pass through to canvas */
+        }
+        .control-panel {
+            pointer-events: auto; /* Re-enable clicks for controls */
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="ui-layer">
+        <div class="control-panel">
+            <h3>飞剑控制台</h3>
+            <div class="control-group">
+                <label for="countControl">数量: <span id="countDisplay">5</span></label>
+                <input type="range" id="countControl" min="1" max="10" value="5">
+            </div>
+            <div class="control-group">
+                <label for="speedControl">速度: <span id="speedDisplay">5</span></label>
+                <input type="range" id="speedControl" min="1" max="30" value="5">
+            </div>
+            <div class="control-group">
+                <label for="radiusControl">半径: <span id="radiusDisplay">50</span></label>
+                <input type="range" id="radiusControl" min="20" max="200" value="50">
+            </div>
+            <div class="control-group">
+                <label for="trajectoryControl">轨迹: </label>
+                <select id="trajectoryControl">
+                    <option value="linear">直线飞行</option>
+                    <option value="curve">曲线飞行</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="colorControl">颜色: </label>
+                <input type="color" id="colorControl" value="#00ffff">
+            </div>
+            
+            <hr style="border-color: #444; margin: 15px 0;">
+            
+            <div class="control-group">
+                <label for="attackMode">攻击模式: </label>
+                <select id="attackMode">
+                    <option value="linear">直线发射</option>
+                    <option value="scatter">散射</option>
+                    <option value="circle">圆形环绕</option>
+                </select>
+            </div>
+            <button id="attackBtn" style="width: 100%; padding: 8px; margin-top: 5px; background: #333; color: #fff; border: 1px solid #666; cursor: pointer;">发射飞剑 (Space)</button>
+        </div>
+    </div>
+    <canvas id="gameCanvas"></canvas>
+
+    <script src="sword_shape.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
